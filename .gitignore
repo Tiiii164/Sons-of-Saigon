@@ -72,7 +72,3 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
 
-# Ignore specific files and folders in Sons of Saigon 2 (RPG Third View) directory
-Sons of Saigon 2 (RPG Third View)/Library/
-Sons of Saigon 2 (RPG Third View)/Assets/Scenes/Playground.unity
-
