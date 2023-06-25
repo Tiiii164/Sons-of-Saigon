@@ -385,6 +385,8 @@
 "Assets/Scripts/BasicRigidBodyPush.cs"
 "Assets/Scripts/BulletController.cs"
 "Assets/Scripts/EnemyNavMesh.cs"
+"Assets/Scripts/SwitchGun.cs"
+"Assets/Scripts/SwitchState.cs"
 "Assets/Scripts/ThirdPersonController.cs"
 "Assets/Scripts/ThirdPersonShooterController.cs"
 "Assets/TutorialInfo/Scripts/Readme.cs"

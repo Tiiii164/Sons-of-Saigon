@@ -106,7 +106,10 @@ namespace StarterAssets
         private Animator _animator;
         private CharacterController _controller;
         private StarterAssetsInputs _input;
+        private ThirdPersonShooterController _shooter;
         private GameObject _mainCamera;
+        public Transform[] weapons;
+        private int selectedWeapon = 0;
         private bool _rotateOnMove = true;
 
         private const float _threshold = 0.01f;
@@ -142,6 +145,7 @@ namespace StarterAssets
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
+            _shooter = GetComponent<ThirdPersonShooterController>();
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
             _playerInput = GetComponent<PlayerInput>();
 #else
@@ -158,7 +162,9 @@ namespace StarterAssets
         private void Update()
         {
             _hasAnimator = TryGetComponent(out _animator);
-
+            Shooting();
+            Aiming();
+            GetInputToSwapGuns();
             JumpAndGravity();
             GroundedCheck();
             Move();
@@ -274,9 +280,12 @@ namespace StarterAssets
             Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
 
             // move the player
-            _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
+            if(!_input.shoot)
+            {
+                _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
                              new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
-
+            }
+            
             // update animator if using character
             if (_hasAnimator)
             {
@@ -306,7 +315,7 @@ namespace StarterAssets
                 }
 
                 // Jump
-                if (_input.jump && _jumpTimeoutDelta <= 0.0f)
+                if (_input.jump && _jumpTimeoutDelta <= 0.0f && !_input.shoot)
                 {
                     // the square root of H * -2 * G = how much velocity needed to reach desired height
                     _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
@@ -392,6 +401,62 @@ namespace StarterAssets
             if (animationEvent.animatorClipInfo.weight > 0.5f)
             {
                 AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
+            }
+        }
+
+        private void Aiming()
+        {
+            if(Input.GetKeyDown(KeyCode.Mouse1) && _shooter.isAim && Grounded)
+            {
+                _animator.SetBool("isAim", true);
+            }
+            else if (Input.GetKeyDown(KeyCode.Mouse1) && !_shooter.isAim && Grounded)
+            {
+                _animator.SetBool("isAim", false);
+            }
+        }
+
+        private void GetInputToSwapGuns()
+        {
+            int previousSelectedWeapon = selectedWeapon;
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                _animator.SetBool("isRife", true);
+                _animator.SetBool("isPistol", false);
+                selectedWeapon = 0;
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha2) && transform.childCount >= 2)
+            {
+                _animator.SetBool("isPistol", true);
+                _animator.SetBool("isRife", false);
+                selectedWeapon = 1;
+            }
+            if (previousSelectedWeapon != selectedWeapon)
+            {
+                SwitchWeapon();
+            }
+        }
+
+        void SwitchWeapon()
+        {
+            for (int i = 0; i < weapons.Length; i++)
+            {
+                if (i == selectedWeapon)
+                    weapons[i].gameObject.SetActive(true);
+                else
+                    weapons[i].gameObject.SetActive(false);
+            }
+        }
+
+        private void Shooting()
+        {
+            if (_input.shoot)
+            {
+                _animator.SetBool("isShoot", true);
+            }
+            else
+            {
+                _animator.SetBool("isShoot", false);
             }
         }
 
