@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Sons of Saigon 2 (RPG Third View)/Assets/Weapon/Pistol Gun/Prefabs.meta
 guid: b4de27da3e092ad4bbae00d165eee1da
+========
+guid: dd19235d52f7f32499695fd13896d256
+>>>>>>>> main:Sons of Saigon 2 (RPG Third View)/Assets/HealthSystem/HealthSystem/Demo/Prefabs.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

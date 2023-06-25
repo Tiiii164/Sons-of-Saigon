@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Sons of Saigon 2 (RPG Third View)/Assets/Weapon/Pistol Gun.meta
 guid: 7550998a76ff4594fadc1ddec926339f
+========
+guid: a5e8fbedc0c35dd45a48b335b66f0c58
+>>>>>>>> main:Sons of Saigon 2 (RPG Third View)/Assets/HealthSystem/HealthSystem/Demo/Animations.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

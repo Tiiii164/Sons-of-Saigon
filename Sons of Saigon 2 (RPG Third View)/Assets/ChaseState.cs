@@ -6,12 +6,18 @@ public class ChaseState : StateMachineBehaviour
 {
     //[SerializeField] GameObject player;
     [SerializeField] float chaseSpeed;
+    //AudioClip ChaseThemeAudioClip;
     NavMeshAgent navMeshAgent;
     Transform player;
-
+    //AudioSource audioSource;
+    //AudioClip audioClip;
+    EnemyNavMesh enemyNavMesh;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        enemyNavMesh = animator.GetComponent<EnemyNavMesh>();
+        //audioClip = animator.GetComponent<AudioClip>();
+        //audioSource = animator.GetComponent<AudioSource>();
         navMeshAgent = animator.GetComponent<NavMeshAgent>();
         navMeshAgent.speed = chaseSpeed;
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -21,6 +27,8 @@ public class ChaseState : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        //chase sound
+        //audioSource.PlayOneShot(enemyNavMesh.ChaseThemeAudioClip);
         float distance = Vector3.Distance(player.position, animator.transform.position);
         if (distance > 15)
         {

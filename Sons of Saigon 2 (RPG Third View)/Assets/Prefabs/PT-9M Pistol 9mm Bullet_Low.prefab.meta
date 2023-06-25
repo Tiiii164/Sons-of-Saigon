@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Sons of Saigon 2 (RPG Third View)/Assets/Prefabs/PT-9M Pistol 9mm Bullet_Low.prefab.meta
 guid: ca932cd12b8cbde4689b0f5aac19f513
+========
+guid: 5bb235a501f228648a3ca11749a19575
+>>>>>>>> main:Sons of Saigon 2 (RPG Third View)/Assets/HealthSystem/HealthSystem/Demo/Prefabs/CarSporty.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 

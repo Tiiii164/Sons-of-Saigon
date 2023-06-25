@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Sons of Saigon 2 (RPG Third View)/Assets/Weapon/Pistol Gun/Textures.meta
 guid: 5269b69d854a91a42b28d416dd19660f
+========
+guid: c31179eb89ac89044a9e2f9cbefd4eee
+>>>>>>>> main:Sons of Saigon 2 (RPG Third View)/Assets/HealthSystem/HealthSystem/Demo/Textures.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

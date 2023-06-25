@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Sons of Saigon 2 (RPG Third View)/Assets/Weapon/Pistol Gun/Prefabs/Demo/PT-9M Pistol_skin01.prefab.meta
 guid: 4fa064f29015d664bb1879d6667ee10c
+========
+guid: f1419c2a3f5ecf44e824039f908fea60
+>>>>>>>> main:Sons of Saigon 2 (RPG Third View)/Assets/HealthSystem/HealthSystem/Prefabs/pfHealthBarUIWorldCanvas.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 
