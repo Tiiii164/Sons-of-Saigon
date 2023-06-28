@@ -64,17 +64,19 @@ public class EnemyNavMesh : MonoBehaviour
            animator.SetTrigger("Damaged");
        }*/
         healthSystem.Damage(damageAmount);
-       
+        Debug.Log("5");
     }
 
     private void HealthSystem_OnDamaged(object sender, System.EventArgs e)
     {
-        animator.SetTrigger("Damaged");
+        
+        //animator.SetTrigger("Damaged");
     }
 
     private void HealthSystem_OnDead(object sender, System.EventArgs e)
     {
         animator.SetTrigger("Die");
+
         Destroy(gameObject,5);
     }
 }

@@ -64,7 +64,11 @@ namespace CodeMonkey.HealthSystemCM {
         /// Deal damage to this HealthSystem
         /// </summary>
         public void Damage(float amount) {
-            health -= amount;
+            if (health > 0)
+            {
+                health -= amount;
+            }
+            
             if (health < 0) {
                 health = 0;
             }
