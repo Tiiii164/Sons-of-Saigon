@@ -21,12 +21,12 @@ public class XPTracker : MonoBehaviour
     }
     public void AddXP(int amount)
     {
-        
         int previousLevel = XPTranslation.CurrentLevel;
         if (XPTranslation.AddXP(amount))
         {
             OnLevelChanged.Invoke(previousLevel, XPTranslation.CurrentLevel);
         }
+        Debug.Log("AddXP");
         RefreshDisplay();
     }
     public void SetLevel(int level)
@@ -69,6 +69,5 @@ public class XPTracker : MonoBehaviour
         {
             XPToNextLevelText.text = $"XP to next level: At Max";
         }
-
     }
 }

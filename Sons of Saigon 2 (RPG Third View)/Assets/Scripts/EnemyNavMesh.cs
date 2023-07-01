@@ -6,7 +6,7 @@ public class EnemyNavMesh : MonoBehaviour
 {
     public int HP = 100;
     public Animator animator;
-
+    [SerializeField] XPTracker XPTracker;
     //private AudioSource enemyAudio;
 
     private HealthSystem healthSystem;
@@ -20,6 +20,7 @@ public class EnemyNavMesh : MonoBehaviour
 
     public void Awake()
     {
+        
         healthSystem = new HealthSystem(HP);
         healthSystem.OnDead += HealthSystem_OnDead;
         healthSystem.OnDamaged += HealthSystem_OnDamaged;
@@ -75,9 +76,11 @@ public class EnemyNavMesh : MonoBehaviour
 
     private void HealthSystem_OnDead(object sender, System.EventArgs e)
     {
-        animator.SetTrigger("Die");
-
-        Destroy(gameObject,5);
+            gameObject.GetComponent<BoxCollider>().enabled = false;
+            animator.SetTrigger("Die");
+            
+            XPTracker.AddXP(200);
+            Destroy(gameObject, 5);
     }
 }
 

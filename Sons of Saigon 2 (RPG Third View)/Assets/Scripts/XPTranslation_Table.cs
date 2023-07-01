@@ -14,7 +14,7 @@ public class XPTranslation_Table : BaseXPTranslation
 {
     [SerializeField] List<XPTranslationTableEntry> Table;
     // Hàm này tính toán kinh nghiệm cần thiết cho các cấp độ
-    public void CalculateXPRequirements()
+   /* public void CalculateXPRequirements()
     {
         if (Table.Count == 0)
         {
@@ -30,7 +30,7 @@ public class XPTranslation_Table : BaseXPTranslation
         level1.Level = 1;
         level1.XPRequired = 100; // Kinh nghiệm cần thiết cho level 1
         Table.Add(level1);
-
+        Debug.Log("Level: " + level1.Level + ", XP Required: " + level1.XPRequired);
         // Tạo mục cho các cấp độ tiếp theo dựa trên quy tắc "level 2 gấp đôi kinh nghiệm cần để lên cấp của level 1"
         for (int i = 2; i <= Table.Count; i++)
         {
@@ -38,12 +38,13 @@ public class XPTranslation_Table : BaseXPTranslation
             entry.Level = i;
             entry.XPRequired = Table[i - 2].XPRequired * 2; // Kinh nghiệm cần thiết cho level i
             Table.Add(entry);
+            Debug.Log("Level: " + level1.Level + ", XP Required: " + level1.XPRequired);
         }
-    }
+    }*/
 
     public void Start()
     {
-        CalculateXPRequirements();
+        //CalculateXPRequirements();
     }
     public override bool AddXP(int amount)
     {
@@ -71,7 +72,6 @@ public class XPTranslation_Table : BaseXPTranslation
                 }
                 break;
             }
-
         }
         return false;
     }
