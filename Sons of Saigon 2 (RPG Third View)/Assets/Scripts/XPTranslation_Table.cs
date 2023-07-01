@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,7 +13,38 @@ public class XPTranslationTableEntry
 public class XPTranslation_Table : BaseXPTranslation
 {
     [SerializeField] List<XPTranslationTableEntry> Table;
+    // Hàm này tính toán kinh nghiệm cần thiết cho các cấp độ
+    public void CalculateXPRequirements()
+    {
+        if (Table.Count == 0)
+        {
+            Debug.LogError("XP Translation Table is empty!");
+            return;
+        }
 
+        // Xóa tất cả các mục hiện có trong bảng
+        Table.Clear();
+
+        // Tạo mục cho level 1
+        XPTranslationTableEntry level1 = new XPTranslationTableEntry();
+        level1.Level = 1;
+        level1.XPRequired = 100; // Kinh nghiệm cần thiết cho level 1
+        Table.Add(level1);
+
+        // Tạo mục cho các cấp độ tiếp theo dựa trên quy tắc "level 2 gấp đôi kinh nghiệm cần để lên cấp của level 1"
+        for (int i = 2; i <= Table.Count; i++)
+        {
+            XPTranslationTableEntry entry = new XPTranslationTableEntry();
+            entry.Level = i;
+            entry.XPRequired = Table[i - 2].XPRequired * 2; // Kinh nghiệm cần thiết cho level i
+            Table.Add(entry);
+        }
+    }
+
+    public void Start()
+    {
+        CalculateXPRequirements();
+    }
     public override bool AddXP(int amount)
     {
 
