@@ -8,8 +8,9 @@ namespace CodeMonkey.HealthSystemCM
     {
         private Rigidbody bulletRigidbody;
         private float bulletSpeed = 20f;
-        
-        // Start is called before the first frame update
+        //[SerializeField] private CharacterStats characterStats;
+
+        private CharacterStats characterStats;
         private void Awake()
         {
             bulletRigidbody = GetComponent<Rigidbody>();
@@ -18,15 +19,17 @@ namespace CodeMonkey.HealthSystemCM
         // Update is called once per frame
         void Start()
         {
-           bulletRigidbody.velocity = transform.forward * bulletSpeed;
-           
+            characterStats = CharacterStats.Instance;
+            bulletRigidbody.velocity = transform.forward * bulletSpeed;
+          
         }
 
         private void OnTriggerEnter(Collider other)
         {
             if (other.TryGetComponent(out EnemyNavMesh enemy))
             {
-                enemy.Damage(5);
+                enemy.Damage(characterStats.Damage);
+                //enemy.Damage(5);
                 Destroy(gameObject);
             }
             else

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using CodeMonkey.HealthSystemCM;
-public class EnemyNavMesh : MonoBehaviour
+public class EnemyNavMesh : MonoBehaviour, IGetHealthSystem
 {
     public int HP = 100;
     public Animator animator;
@@ -20,7 +20,6 @@ public class EnemyNavMesh : MonoBehaviour
 
     public void Awake()
     {
-        
         healthSystem = new HealthSystem(HP);
         healthSystem.OnDead += HealthSystem_OnDead;
         healthSystem.OnDamaged += HealthSystem_OnDamaged;
@@ -65,7 +64,7 @@ public class EnemyNavMesh : MonoBehaviour
            animator.SetTrigger("Damaged");
        }*/
         healthSystem.Damage(damageAmount);
-        Debug.Log("5");
+        Debug.Log("Damaged");
     }
 
     private void HealthSystem_OnDamaged(object sender, System.EventArgs e)
@@ -81,6 +80,11 @@ public class EnemyNavMesh : MonoBehaviour
             
             XPTracker.AddXP(200);
             Destroy(gameObject, 5);
+    }
+
+    public HealthSystem GetHealthSystem()
+    {
+        return healthSystem;
     }
 }
 
